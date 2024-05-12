@@ -1,15 +1,15 @@
 CREATE TABLE "user" (
-    "ID" SERIAL PRIMARY KEY,
-    "First_name" VARCHAR(100) NOT NULL,
-    "Last_name" VARCHAR(100) NOT NULL,
-    "Password" VARCHAR(255) NOT NULL,
-    "Email" VARCHAR(255) NOT NULL,
-    "Phone" VARCHAR(20) NOT NULL,
-    "Token" VARCHAR(255),
-    "User_type" VARCHAR(10) NOT NULL,
-    "Refresh_token" VARCHAR(255),
-    "Created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "Updated_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "Created_by" VARCHAR(100),
-    "Updated_by" VARCHAR(100)
+    "_id" SERIAL PRIMARY KEY,
+    "first_name" VARCHAR(100) NOT NULL,
+    "last_name" VARCHAR(100) NOT NULL,
+    "password" VARCHAR(255) NOT NULL,
+    "email" VARCHAR(255) NOT NULL,
+    "phone" VARCHAR(20) NOT NULL,
+    "token" VARCHAR(255),
+    "user_type" VARCHAR(10) NOT NULL,
+    "refresh_token" VARCHAR(255),
+    "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_by" VARCHAR(100),
+    "updated_by" VARCHAR(100)
 );

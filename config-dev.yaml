@@ -1,7 +1,0 @@
-port: 5000
-######### postgres #################
-postgres_db_host : "localhost"
-postgres_db_port : "5432"
-postgres_db_user : "postgres"
-postgres_db_password : "1234"
-postgres_db_dbname : "user"
