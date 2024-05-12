@@ -29,3 +29,5 @@ System variable edit: Selected path and then add
 Variable    Value
 ---------------------
 GOPATH      C:directory_where_go_is_installed\Go\bin
+
+run command : go mod init user-service
