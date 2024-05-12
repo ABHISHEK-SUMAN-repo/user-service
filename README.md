@@ -22,14 +22,14 @@ For windows set-up do the following:
 
 Environment variable edit:
 
-Variable    Value
+Variable  :  Value
 <!-- --------------------- -->
-GOPATH      C:\go   
+GOPATH    :  C:\go   
 
 System variable edit: Selected path and then add 
 
-Variable    Value
+Variable  :  Value
 <!-- --------------------- -->
-GOPATH      C:directory_where_go_is_installed\Go\bin
+GOPATH    :  C:directory_where_go_is_installed\Go\bin
 
 run command : go mod init user-service
