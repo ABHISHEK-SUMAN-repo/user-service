@@ -1,26 +1,46 @@
 package config
 
 import (
-	"fmt"
+	"errors"
 	"log"
-	"github.com/spf13/viper"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
-func PostgresConnection() {
-	var err error
-	host := viper.GetString("postgres_db_host")
-	port := viper.GetString("postgres_db_port")
-	user := viper.GetString("postgres_db_user")
-	password := viper.GetString("postgres_db_password")
-	dbname := viper.GetString("postgres_db_dbname")
+func PostgresConnection(env string) error{
+	cfg := LoadConfig(env)
+    
+    // Retrieve the PostgreSQL database configuration
+    postgresDBConfig, ok := cfg.Databases["postgres"]
+    if !ok {
+        log.Printf("No postgres database config found")
+		return errors.New("No postgres database")
+    }
 
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	dsn := "host=" + postgresDBConfig.Host +
+		" port=" + postgresDBConfig.Port +
+		" user=" + postgresDBConfig.User +
+		" password=" + postgresDBConfig.Password +
+		" dbname=" + postgresDBConfig.Name +
+		" sslmode=disable"
+
+	// Attempt to connect to the PostgreSQL database
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("Failed to connect to database: %s", err)
+		log.Printf("Failed to connect to the database: %v", err)
+		return err
 	}
+
+	err = db.Raw("SELECT 1").Error
+	if err != nil {
+		log.Printf("Failed to execute test query: %v", err)
+		return err
+	}
+
+	log.Println("Database connection is successful")
+	return nil
 }
+
