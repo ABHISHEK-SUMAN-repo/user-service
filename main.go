@@ -1,22 +1,22 @@
 package main
 
 import (
-    "log"
-    "os"
-    "user-service/config"
+	"log"
+	"user-service/config"
+	"github.com/spf13/viper"
 )
 
-
 func main() {
-    env := os.Getenv("APP_ENV")
-    if env == "" {
-        env = "dev"
-    }
+	viper.SetConfigName("config.dev") // name of config file (without extension)
+	viper.SetConfigType("yaml")   // type of the config file
+	viper.AddConfigPath(".")      // look for config in the working directory
 
-    err := config.Initializer(env)
-    if err != nil {
-        panic("Failed to initialize application: " + err.Error())
-    }
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Fatalf("Error reading config file: %s", err)
+	}
 
-    log.Print("Application initialized")
+	config.Initializer(viper.GetString("environment"))
+
+	log.Print("Application initialized")
 }

@@ -1,6 +1,6 @@
 port: 5000
-base_path: localhost
-
+base_path: user-service
+environment : dev
 databases:
   postgres:
     type: postgres

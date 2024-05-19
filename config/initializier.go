@@ -1,18 +1,18 @@
 package config
 
 import (
-	"errors"
 	"log"
-	"github.com/spf13/viper"
+	"user-service/router"
 )
 
-func Initializer(env string) error {
+func Initializer(env string) {
 	err := PostgresConnection(env)
 	if err != nil {
-		return errors.New("DB connection not initialized")
+		log.Panic("Postgres connection error")
 	}
 	log.Println("Connected to Postgres")
-	r := routerConfig()
-    return r.Run(viper.GetString("base_path")+":"+viper.GetString("port"))
+	router.RoutingInitialize()
+
 }
+
 
