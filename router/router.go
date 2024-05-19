@@ -28,6 +28,7 @@ func RoutingInitialize() {
 func userRouter(router *gin.RouterGroup) {
 	// router.GET("/test", controller.Test)
 	router.POST("/signUp/users", controller.SignUp)
+	router.GET("/phoneNumber",controller.GetUsersByPhoneNumber)
 	// router.POST("/login/users", controller.login)
 	// router.POST("/logout/users", controller.logout)
 

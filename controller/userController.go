@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"user-service/dto"
 	"user-service/service"
-
 	"github.com/gin-gonic/gin"
 )
 func SignUp(c *gin.Context) {
@@ -48,3 +47,14 @@ func SignUp(c *gin.Context) {
 // 		},
 // 	}
 // } 
+
+func GetUsersByPhoneNumber(c *gin.Context){
+	phoneNumber :=  c.Query("phoneNumber")
+	response ,err := service.GetUsersByPhoneNumber(phoneNumber)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, response)
+}

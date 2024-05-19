@@ -16,3 +16,10 @@ func SignUp(userDTO dto.UserDTO) (model.Users, error) {
 	return createdUser, nil
 }
 
+func GetUsersByPhoneNumber(phoneNumber string) (model.Users, error) {
+	users, err := repository.GetUsersByPhoneNumber(phoneNumber)
+    if err!= nil {
+        return model.Users{}, err
+    }
+    return users, nil
+}

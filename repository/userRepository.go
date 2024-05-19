@@ -14,3 +14,12 @@ func CreateUser(user model.Users) (model.Users, error) {
 	return user,nil
 }
 
+func GetUsersByPhoneNumber(phoneNumber string) (model.Users, error) {
+	var user model.Users
+    result := config.DB.Where("phone = ?", phoneNumber).First(&user)
+    if result.Error!= nil {
+        return model.Users{},result.Error
+    }
+    return user,nil
+}
+
