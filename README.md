@@ -37,10 +37,11 @@ System variable edit: Selected path and then add :
 ```
 
 run command : 
-```bash
+```
 go mod init user-service
-
+```
 # Run the command
+
 **On Linux/MacOS:**
 
 ```bash
