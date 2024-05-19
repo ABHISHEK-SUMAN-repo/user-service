@@ -31,7 +31,7 @@ func PostgresConnection(env string) error{
 
 	
 		db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	log.Print("-------------------------------------->",DB)
+
 	if err != nil {
 		log.Printf("Failed to connect to the database: %v", err)
 		return err
@@ -42,7 +42,7 @@ func PostgresConnection(env string) error{
 		log.Printf("Failed to execute test query: %v", err)
 		return err
 	}
-	err = db.AutoMigrate(&model.User{})
+	err = db.AutoMigrate(&model.Users{})
     if err != nil {
         log.Fatalf("Error migrating database: %s", err)
     }
@@ -55,7 +55,7 @@ func PostgresConnection(env string) error{
 
     DB = db
 
-    err = DB.AutoMigrate(&model.User{})
+    err = DB.AutoMigrate(&model.Users{})
     if err != nil {
         log.Fatalf("Error migrating database: %s", err)
     }

@@ -5,11 +5,11 @@ import (
 	"user-service/model"
 )
 
-func CreateUser(user model.User) (model.User, error) {
+func CreateUser(user model.Users) (model.Users, error) {
 
 	result := config.DB.Create(&user)
 	if result.Error != nil {
-		return model.User{},result.Error
+		return model.Users{},result.Error
 	}
 	return user,nil
 }

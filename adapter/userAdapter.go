@@ -6,8 +6,8 @@ import (
 	"user-service/model"
 )
 
-func ConvertUserDTOtoUserModel(userDTO dto.UserDTO) model.User {
-	return model.User{
+func ConvertUserDTOtoUserModel(userDTO dto.UserDTO) model.Users {
+	return model.Users{
 		First_name: userDTO.First_name,
 		Last_name:  userDTO.Last_name,
 		Password:   userDTO.Password,
