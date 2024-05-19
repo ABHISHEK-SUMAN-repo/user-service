@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func createUsers(c *gin.Context){
+func CreateUsers(c *gin.Context){
 
 	var userDTO dto.UserDTO
 	if err := c.ShouldBindJSON(&userDTO); err != nil {

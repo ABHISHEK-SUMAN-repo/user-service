@@ -27,5 +27,6 @@ func RoutingInitialize() {
 
 func userRouter(router *gin.RouterGroup) {
 	router.GET("/users", controller.UserController)
+	router.POST("/create/users", controller.CreateUser)
 }
 

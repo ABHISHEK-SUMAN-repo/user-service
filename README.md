@@ -33,3 +33,14 @@ System variable edit: Selected path and then add
 | GOPATH    :  C:directory_where_go_is_installed\Go\bin |
 
 run command : go mod init user-service
+
+# Run the command
+**On Linux/MacOS:**
+```bash
+export APP_ENV=prod
+go run main.go
+
+**On Windows:**
+```bash
+set APP_ENV=prod
+go run main.go
