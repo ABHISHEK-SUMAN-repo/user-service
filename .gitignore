@@ -16,7 +16,7 @@ bin/
 config.yaml
 
 # Ignore IDE or editor specific files
-.vscode/
+.vscode/*
 .idea/
 
 # Ignore logs
