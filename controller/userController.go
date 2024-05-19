@@ -58,3 +58,16 @@ func GetUsersByPhoneNumber(c *gin.Context){
 
 	c.JSON(http.StatusOK, response)
 }
+
+func Login(c *gin.Context){
+	emailId := c.Query("emailId")
+	password := c.Query("password")
+	response, err := service.Login(emailId, password)
+	if err!= nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+        return
+    }
+
+	c.JSON(http.StatusOK, response)
+	
+}

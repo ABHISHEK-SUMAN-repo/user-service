@@ -1,6 +1,7 @@
 port: 5000
 base_path: user-service
 environment : dev
+SECRET : 12Q2i&$*&3weZyy6uOQWE4^!6
 users_table_name : users
 databases:
   postgres:
