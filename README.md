@@ -40,6 +40,8 @@ run command :
 ```
 go mod init user-service
 ```
+```
+```
 # Run the command
 
 **On Linux/MacOS:**
