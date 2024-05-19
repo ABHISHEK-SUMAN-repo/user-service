@@ -41,7 +41,7 @@ run command : go mod init user-service
 export APP_ENV=prod
 go run main.go
 
-
+```
 **On Windows:**
 
 ```bash
