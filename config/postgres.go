@@ -3,6 +3,7 @@ package config
 import (
 	"errors"
 	"log"
+	"user-service/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -29,7 +30,8 @@ func PostgresConnection(env string) error{
 		" sslmode=disable"
 
 	
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	log.Print("-------------------------------------->",DB)
 	if err != nil {
 		log.Printf("Failed to connect to the database: %v", err)
 		return err
@@ -40,7 +42,26 @@ func PostgresConnection(env string) error{
 		log.Printf("Failed to execute test query: %v", err)
 		return err
 	}
-	log.Println("Database connection is successful")
-	return nil
+	err = db.AutoMigrate(&model.User{})
+    if err != nil {
+        log.Fatalf("Error migrating database: %s", err)
+    }
+	DB = db
+	err = db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"").Error
+    if err != nil {
+        log.Printf("Failed to create uuid-ossp extension: %v", err)
+        return err
+    }
+
+    DB = db
+
+    err = DB.AutoMigrate(&model.User{})
+    if err != nil {
+        log.Fatalf("Error migrating database: %s", err)
+    }
+
+    log.Println("Database connection is successful")
+
+    return nil
 }
 

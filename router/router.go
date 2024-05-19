@@ -3,6 +3,7 @@ package router
 import (
 	"log"
 	"user-service/controller"
+
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -10,7 +11,6 @@ import (
 // RoutingInitialize initializes the routes
 func RoutingInitialize() {
 	r := gin.Default()
-
 	basePath := viper.GetString("base_path")
 	port := viper.GetString("port")
 
@@ -26,7 +26,9 @@ func RoutingInitialize() {
 }
 
 func userRouter(router *gin.RouterGroup) {
-	router.GET("/users", controller.UserController)
-	router.POST("/create/users", controller.CreateUser)
-}
+	router.GET("/test", controller.Test)
+	router.POST("/signUp/users", controller.SignUp)
+	// router.POST("/login/users", controller.login)
+	// router.POST("/logout/users", controller.logout)
 
+}

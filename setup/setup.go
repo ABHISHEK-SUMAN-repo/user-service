@@ -1,18 +1,17 @@
-package config
+package setup
 
 import (
 	"log"
+	"user-service/config"
 	"user-service/router"
 )
 
 func Initializer(env string) {
-	err := PostgresConnection(env)
+	err := config.PostgresConnection(env)
 	if err != nil {
 		log.Panic("Postgres connection error")
 	}
-	log.Println("Connected to Postgres")
+	log.Print("Connected to Postgres")
 	router.RoutingInitialize()
-
 }
-
 

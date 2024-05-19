@@ -1,32 +1,18 @@
 package service
 
 import (
-	"net/http"
+	"user-service/adapter"
 	"user-service/dto"
-	"github.com/gin-gonic/gin"
+	"user-service/model"
+	"user-service/repository"
 )
 
-func CreateUsers(c *gin.Context){
-
-	var userDTO dto.UserDTO
-	if err := c.ShouldBindJSON(&userDTO); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
+func SignUp(userDTO dto.UserDTO) (model.User, error) {
+	user := adapter.ConvertUserDTOtoUserModel(userDTO)
+	createdUser, err := repository.CreateUser(user)
+	if err != nil {
+		return model.User{}, err
 	}
-
-	response := createUser(userDTO)
-
-	c.JSON(http.StatusOK, gin.H{"user": response})
+	return createdUser, nil
 }
 
-func createUser(userDTO dto.UserDTO) dto.ResponseDTO {
-	return dto.ResponseDTO{
-		Data: dto.UserDTO{
-			Email:      userDTO.Email,
-			Phone:      userDTO.Phone,
-			Password:   userDTO.Password,
-			First_name: userDTO.First_name,
-			Last_name:  userDTO.Last_name,
-		},
-	}
-}

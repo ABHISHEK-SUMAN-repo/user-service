@@ -3,11 +3,10 @@ base_path: user-service
 environment : dev
 databases:
   postgres:
-    type: postgres
     host: localhost
     port: 5432
     user: postgres
     password: 1234
-    name: user
+    name: postgres
 
 

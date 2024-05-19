@@ -3,24 +3,48 @@ package controller
 import (
 	"net/http"
 	"user-service/dto"
+	"user-service/service"
 
 	"github.com/gin-gonic/gin"
 )
+func SignUp(c *gin.Context) {
+	var userDTO dto.UserDTO
 
-func UserController(c *gin.Context){
-	c.JSON(http.StatusOK, gin.H{
-		"status":  true,
-		"message": "Hello World",
-	})
+	if err := c.Bind(&userDTO); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	createdUser, err := service.SignUp(userDTO)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"user": createdUser, "status": true})
 }
 
-func CreateUser(c *gin.Context){
-	var user dto.UserDTO
+func Test(c *gin.Context){
 
-	if err := c.Bind(&user); err!=nil{
-        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-        return
-    }
+	var userDTO dto.UserDTO
+	if err := c.ShouldBindJSON(&userDTO); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
-	c.JSON(http.StatusOK, gin.H{ "user": user, "status": true})
+	response := createUser(userDTO)
+
+	c.JSON(http.StatusOK, gin.H{"user": response})
 }
+
+func createUser(userDTO dto.UserDTO) dto.ResponseDTO {
+	return dto.ResponseDTO{
+		Data: dto.UserDTO{
+			Email:      userDTO.Email,
+			Phone:      userDTO.Phone,
+			Password:   userDTO.Password,
+			First_name: userDTO.First_name,
+			Last_name:  userDTO.Last_name,
+		},
+	}
+} 

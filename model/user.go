@@ -1,9 +1,12 @@
 package model
 
-import "time"
+import (
+	"github.com/google/uuid"
+	"time"
+)
 
-type User struct {
-	ID            uint      `gorm:"primaryKey" json:"_id"`
+type Users struct {
+	ID            uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key" json:"_id"`
 	First_name    *string   `json:"first_name" validate:"required,min=2,max=100"`
 	Last_name     *string   `json:"last_name" validate:"required,min=2,max=100"`
 	Password      *string   `json:"Password" validate:"required,min=6"`
