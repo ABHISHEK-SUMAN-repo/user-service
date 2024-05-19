@@ -13,12 +13,12 @@ func PostgresConnection(env string) error{
 	cfg := LoadConfig(env)
 	if cfg == nil {
         log.Printf("No config found")
-        return errors.New("No config found")
+        return errors.New("no config found")
     }
     postgresDBConfig, ok := cfg.Databases["postgres"]
     if !ok {
         log.Printf("No postgres database config found")
-		return errors.New("No postgres database")
+		return errors.New("no postgres database config found")
     }
 
 	dsn := "host=" + postgresDBConfig.Host +
@@ -40,7 +40,6 @@ func PostgresConnection(env string) error{
 		log.Printf("Failed to execute test query: %v", err)
 		return err
 	}
-	DB = db
 	log.Println("Database connection is successful")
 	return nil
 }

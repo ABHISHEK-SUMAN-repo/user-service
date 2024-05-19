@@ -6,7 +6,7 @@ type ResponseDTO struct {
 	Id             string      `json:"id"`
 	Data           interface{} `json:"data"`
 	ErrorCode      int         `json:"error"`
-	HttpStatusCode int         `json:"http_status_code"`
+HttpStatusCode int         `json:"http_status_code"`
 }
 
 func Success() ResponseDTO {

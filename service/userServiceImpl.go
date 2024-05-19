@@ -1,6 +1,12 @@
 package service
 
-func createUsers(c *gin.Context) {
+import (
+	"net/http"
+	"user-service/dto"
+	"github.com/gin-gonic/gin"
+)
+
+func createUsers(c *gin.Context){
 
 	var userDTO dto.UserDTO
 	if err := c.ShouldBindJSON(&userDTO); err != nil {
@@ -10,7 +16,7 @@ func createUsers(c *gin.Context) {
 
 	response := createUser(userDTO)
 
-	c.JSON(http.StatusOK, gin.H{"user":response})
+	c.JSON(http.StatusOK, gin.H{"user": response})
 }
 
 func createUser(userDTO dto.UserDTO) dto.ResponseDTO {
