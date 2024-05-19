@@ -38,12 +38,12 @@ run command : go mod init user-service
 **On Linux/MacOS:**
 
 ```bash
-export APP_ENV=prod
+export APP_ENV=dev
 go run main.go
 
 ```
 **On Windows:**
 
 ```bash
-set APP_ENV=prod
+set APP_ENV=dev
 go run main.go
