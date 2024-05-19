@@ -1,6 +1,7 @@
 port: 5000
 base_path: user-service
 environment : dev
+users_table_name : users
 databases:
   postgres:
     host: localhost

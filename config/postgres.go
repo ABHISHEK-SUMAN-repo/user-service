@@ -37,16 +37,12 @@ func PostgresConnection(env string) error{
 		return err
 	}
 
-	err = db.Raw("SELECT 1").Error
-	if err != nil {
-		log.Printf("Failed to execute test query: %v", err)
-		return err
-	}
-	err = db.AutoMigrate(&model.Users{})
-    if err != nil {
-        log.Fatalf("Error migrating database: %s", err)
-    }
-	DB = db
+	// err = db.Raw("SELECT 1").Error
+	// if err != nil {
+	// 	log.Printf("Failed to execute test query: %v", err)
+	// 	return err
+	// }
+
 	err = db.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"").Error
     if err != nil {
         log.Printf("Failed to create uuid-ossp extension: %v", err)

@@ -1,8 +1,10 @@
 package model
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
+	"github.com/spf13/viper"
 )
 
 type Users struct {
@@ -19,4 +21,8 @@ type Users struct {
 	Updated_at    time.Time `json:"updated_at"`
 	Created_by    *string   `json:"created_by"`
 	Updated_by    *string   `json:"updated_by"`
+}
+
+func (Users) TableName() string {
+	return viper.GetString("users_table_name")
 }

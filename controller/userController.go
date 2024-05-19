@@ -21,30 +21,30 @@ func SignUp(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"user": createdUser, "status": true})
+	c.JSON(http.StatusOK, gin.H{"data": createdUser, "status": true, "code":http.StatusOK})
 }
 
-func Test(c *gin.Context){
+// func Test(c *gin.Context){
 
-	var userDTO dto.UserDTO
-	if err := c.ShouldBindJSON(&userDTO); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+// 	var userDTO dto.UserDTO
+// 	if err := c.ShouldBindJSON(&userDTO); err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
 
-	response := createUser(userDTO)
+// 	response := createUser(userDTO)
 
-	c.JSON(http.StatusOK, gin.H{"user": response})
-}
+// 	c.JSON(http.StatusOK, gin.H{"user": response})
+// }
 
-func createUser(userDTO dto.UserDTO) dto.ResponseDTO {
-	return dto.ResponseDTO{
-		Data: dto.UserDTO{
-			Email:      userDTO.Email,
-			Phone:      userDTO.Phone,
-			Password:   userDTO.Password,
-			First_name: userDTO.First_name,
-			Last_name:  userDTO.Last_name,
-		},
-	}
-} 
+// func createUser(userDTO dto.UserDTO) dto.ResponseDTO {
+// 	return dto.ResponseDTO{
+// 		Data: dto.UserDTO{
+// 			Email:      userDTO.Email,
+// 			Phone:      userDTO.Phone,
+// 			Password:   userDTO.Password,
+// 			First_name: userDTO.First_name,
+// 			Last_name:  userDTO.Last_name,
+// 		},
+// 	}
+// } 
