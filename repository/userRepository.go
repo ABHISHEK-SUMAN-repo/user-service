@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"log"
 	"user-service/config"
 	"user-service/model"
 )
@@ -33,3 +32,13 @@ func GetUsersByEmailId(emailId string) (model.Users, error){
     }
     return user,nil
 }
+
+func GetUsersById(id string) (model.Users, error){
+	var user model.Users
+    result := config.DB.Where("id = ?", id).First(&user)
+    if result.Error!= nil {
+        return model.Users{},result.Error
+    }
+    return user,nil
+}
+

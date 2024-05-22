@@ -65,9 +65,32 @@ func Login(c *gin.Context){
 	response, err := service.Login(emailId, password)
 	if err!= nil {
         c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
-        return
+		return
     }
 
 	c.JSON(http.StatusOK, response)
 	
+}
+
+func RefreshToken(c *gin.Context) {
+	refreshToken := c.Query("refreshToken")
+    response, err := service.RefreshToken(refreshToken)
+    if err!= nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+        return
+    }
+
+    c.JSON(http.StatusOK, response)
+    
+}
+
+func Logout(c *gin.Context) {
+	userID := c.Query("userId")
+  	err := service.Logout(userID)
+    if err!= nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+        return
+    }
+    c.JSON(http.StatusOK, gin.H{"userId": userID , "Message": "User Logged Out"}) 
+    
 }

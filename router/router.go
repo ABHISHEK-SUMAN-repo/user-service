@@ -30,6 +30,7 @@ func userRouter(router *gin.RouterGroup) {
 	router.POST("/signUp/users", controller.SignUp)
 	router.GET("/phoneNumber",controller.GetUsersByPhoneNumber)
 	router.GET("/login", controller.Login)
-	// router.POST("/logout/users", controller.logout)
+	router.POST("/refresh/token", controller.RefreshToken)
+	router.POST("/logout/users", controller.Logout)
 
 }
