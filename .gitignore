@@ -1,0 +1,23 @@
+# Ignore compiled binaries and object files
+*.exe
+*.o
+*.obj
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Node.js modules directory
+node_modules/
+
+# Ignore Go binary executable
+bin/
+
+# Ignore environment configuration file
+config.yaml
+
+# Ignore IDE or editor specific files
+.vscode/*
+.idea/
+
+# Ignore logs
+logs/

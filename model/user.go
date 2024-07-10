@@ -1,9 +1,14 @@
 package model
 
-import "time"
+import (
+	"time"
 
-type User struct {
-	ID            uint      `gorm:"primaryKey" json:"_id"`
+	"github.com/google/uuid"
+	"github.com/spf13/viper"
+)
+
+type Users struct {
+	ID            uuid.UUID `gorm:"type:uuid;default:uuid_generate_v4();primary_key" json:"_id"`
 	First_name    *string   `json:"first_name" validate:"required,min=2,max=100"`
 	Last_name     *string   `json:"last_name" validate:"required,min=2,max=100"`
 	Password      *string   `json:"Password" validate:"required,min=6"`
@@ -16,4 +21,8 @@ type User struct {
 	Updated_at    time.Time `json:"updated_at"`
 	Created_by    *string   `json:"created_by"`
 	Updated_by    *string   `json:"updated_by"`
+}
+
+func (Users) TableName() string {
+	return viper.GetString("users_table_name")
 }

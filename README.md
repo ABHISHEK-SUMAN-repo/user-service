@@ -18,18 +18,40 @@ Download and install  : [go](https://go.dev/doc/install)
 
 Go to the go directory and clone the repository on the same file.
 
-For windows set-up do the following:
+**For windows set-up do the following:**
 
+```
 Environment variable edit:
 
 | Variable  :  Value |
 ---------------------
 | GOPATH    :  C:\go |  
 
-System variable edit: Selected path and then add 
+```
+System variable edit: Selected path and then add :
 
+```
 | Variable  :  Value |
 ---------------------
 | GOPATH    :  C:directory_where_go_is_installed\Go\bin |
+```
 
-run command : go mod init user-service
+run command : 
+```
+go mod init user-service
+```
+
+# Run the command
+
+**On Linux/MacOS:**
+
+```bash
+export APP_ENV=dev
+go run main.go
+
+```
+**On Windows:**
+
+```bash
+set APP_ENV=dev
+go run main.go

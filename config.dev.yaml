@@ -1,13 +1,15 @@
 port: 5000
-base_path: /user-service
-
+base_path: user-service
+environment : dev
+SECRET : 12Q2i&$*&3weZyy6uOQWE4^!6
+REFRESH_SECRET : 12Q2i&$*&3we77u#i$@*ilM><K>
+users_table_name : users
 databases:
   postgres:
-    type: postgres
     host: localhost
     port: 5432
     user: postgres
     password: 1234
-    name: user
+    name: postgres
 
 
